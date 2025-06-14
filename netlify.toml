@@ -6,3 +6,11 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[template.environment]
+  DEEPL_AUTH_KEY="Your DeepL auth key"
+  TARGET_LANGUAGES="comma-separated list of languages, like en,fr"
+  GHOST_ADMIN_API_KEY="Your Ghost Admin API key"
+  GHOST_ADMIN_API_URL="Your Ghost API url"
+  GHOST_WEBHOOK_SECRET="The webhook secret you entered in Ghost for your webhook."
+  TRANSLATED_LABEL="The label for translated posts. We recommend #translated."

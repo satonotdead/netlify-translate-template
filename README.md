@@ -2,6 +2,10 @@
 
 ## Ghost-DeepL glue (a Netlify function) ##
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/cathysarisky/netlify-translate-template)
+
+
+
 This package receives webhooks from Ghost, sends the post content to DeepL API for translation, then creates new posts in the target languages.
 
 You can create a free DeepL account that provides 500,000 characters of translation per month. Because Netlify also has a generous free tier, this is potentially a free solution to translation for smaller/less prolific Ghost sites.
