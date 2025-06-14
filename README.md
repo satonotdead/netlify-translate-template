@@ -11,17 +11,17 @@ This package receives webhooks from Ghost, sends the post content to DeepL API f
 You can create a free DeepL account that provides 500,000 characters of translation per month. Because Netlify also has a generous free tier, this is potentially a free solution to translation for smaller/less prolific Ghost sites.
 
 To use this function, fork this repo, make a Netlify account, and deploy it to Netlify.
-(A PR that provides detailed directions for this step or sets up a Deploy to Netlify button would be welcome.)
+Or just click the "Deploy to Netlify" button, above.
 
-Use the example.env file to get environment variables set up in Netlify.  (IMPORTANT: Never commit this file with your secrets.  It's best to rename it to .env and make sure it is included in your .gitignore.)  Here's how to get the values you need:
+Set up your environment variables.
+
+Here's how to get the values you need:
 
 * Get your DeepL API key by signing up here: https://www.deepl.com/en/pro-api (Note that the API plans and other plans are not the same. You need an API plan.)  Copy it into the.env file.
 
 * Get your Ghost API key and url by going to /ghost > settings (gear icon) > integrations, clicking "custom", and adding a new integration. Copy these into the .env file.
 
-* While you're on the integration page, click "Add webhook".  Create a new webhook, named anything you like.  The trigger is "Post published".  The url is {whatever your Netlify site's url is, starting with https}/.netlify/functions/translator .  Choose your own webhook secreit.  Copy the webhook secret to the example.env file.
-
-Go to your Netlify deploy, and import the .env (really copy-paste).
+* While you're on the integration page, click "Add webhook".  Create a new webhook, named anything you like.  The trigger is "Post published".  The url is {whatever your Netlify site's url is, starting with https}/.netlify/functions/translator .  Choose your own webhook secret.  Copy the webhook secret to the example.env file.
 
 Deploy the site.  (You have to do this any time you change environment variables.)
 
