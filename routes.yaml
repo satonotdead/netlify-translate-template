@@ -1,0 +1,26 @@
+routes:
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: 'tag:-[hash-translated]'
+  /es/:
+    permalink: /es/{slug}/
+    template: index
+    filter: 'tag:[hash-es]'
+  /ar/:
+    permalink: /ar/{slug}/
+    template: index
+    filter: 'tag:[hash-ar]'
+  /ko/:
+    permalink: /ko/{slug}/
+    template: index
+    filter: 'tag:[hash-ko]'
+  /zh/:
+    permalink: /zh/{slug}/
+    template: index
+    filter: 'tag:[hash-zh]'
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/
