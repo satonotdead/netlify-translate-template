@@ -76,19 +76,29 @@ async function translatePost(post) {
  */
 async function createTranslatedPost(originalPost, title, html, custom_excerpt, targetLang, translation) {
   try {
-    const post = await ghostAdmin.posts.add({
-      title,
-      html,
-      custom_excerpt,
-      status: 'draft', // Create as draft to allow review
-      tags: [...originalPost.tags.map(tag => tag.name), `#${targetLang}`, process.env.TRANSLATED_LABEL],
-      // Copy other relevant fields from original post
-      feature_image: originalPost.feature_image,
-      feature_image_caption: translation.feature_image_caption,
-      feature_image_alt: translation.feature_image_alt,
-      featured: originalPost.featured,
-      access: originalPost.access
-    }, {source: 'html'});
+    // Create a copy of the original post
+    const newPost = { ...originalPost };
+    
+    // Remove fields that should not be copied
+    delete newPost.id;
+    delete newPost.uuid;
+    delete newPost.slug;
+    delete newPost.lexical;
+    delete newPost.mobiledoc;
+    delete newPost.created_at;
+
+    // Update with translated content
+    newPost.title = title;
+    newPost.html = html;
+    newPost.custom_excerpt = custom_excerpt;
+    newPost.feature_image_caption = translation.feature_image_caption;
+    newPost.feature_image_alt = translation.feature_image_alt;
+    newPost.status = 'draft';
+    
+    // Update tags and labels
+    newPost.tags = [...originalPost.tags.map(tag => tag.name), `#${targetLang}`, process.env.TRANSLATED_LABEL];
+
+    const post = await ghostAdmin.posts.add(newPost, { source: 'html' });
     return post;
   } catch (error) {
     console.error('Error creating translated post:', error);
