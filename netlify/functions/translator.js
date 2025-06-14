@@ -1,5 +1,6 @@
 const { DeepLClient } = require('deepl-node');
 const GhostAdminAPI = require('@tryghost/admin-api');
+const verifyGhostSignature = require('../../utils/verifyGhostSignature').default;
 require('dotenv').config();
 
 // Initialize the DeepL client
@@ -26,6 +27,10 @@ if (!process.env.TARGET_LANGUAGES) {
 
 if (!process.env.GHOST_ADMIN_API_URL || !process.env.GHOST_ADMIN_API_KEY) {
   throw new Error('GHOST_ADMIN_API_URL and GHOST_ADMIN_API_KEY environment variables are required');
+}
+
+if (!process.env.GHOST_WEBHOOK_SECRET) {
+  throw new Error('GHOST_WEBHOOK_SECRET environment variable is required');
 }
 
 /**
@@ -114,6 +119,22 @@ const handler = async (event) => {
   }
 
   try {
+    // Verify webhook signature
+    try {
+      await verifyGhostSignature(event);
+    } catch (error) {
+      return {
+        statusCode: 401,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify({
+          error: "Unauthorized",
+          details: error.message
+        })
+      };
+    }
+
     const payload = JSON.parse(event.body);
     
     // Validate Ghost webhook payload
