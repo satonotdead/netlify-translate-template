@@ -1,4 +1,3 @@
-// verifyGhostSignature.ts
 
 import { createHmac } from "node:crypto";
 
