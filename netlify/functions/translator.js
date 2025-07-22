@@ -45,11 +45,11 @@ async function translatePost(post) {
   // Translate to all target languages
   for (const targetLang of TARGET_LANGUAGES) {
     const [titleResult, htmlResult, excerptResult, captionResult, altResult] = await Promise.all([
-      deeplClient.translateText(title, 'en', targetLang),
-      deeplClient.translateText(html, 'en', targetLang),
-      custom_excerpt ? deeplClient.translateText(custom_excerpt, 'en', targetLang) : null,
-      feature_image_caption ? deeplClient.translateText(feature_image_caption, 'en', targetLang) : null,
-      feature_image_alt ? deeplClient.translateText(feature_image_alt, 'en', targetLang) : null
+      deeplClient.translateText(title, 'es', targetLang),
+      deeplClient.translateText(html, 'es', targetLang),
+      custom_excerpt ? deeplClient.translateText(custom_excerpt, 'es', targetLang) : null,
+      feature_image_caption ? deeplClient.translateText(feature_image_caption, 'es', targetLang) : null,
+      feature_image_alt ? deeplClient.translateText(feature_image_alt, 'es', targetLang) : null
     ]);
 
     translations[targetLang] = {
