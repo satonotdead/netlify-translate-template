@@ -2,7 +2,7 @@
 
 ## Ghost-DeepL glue (a Netlify function) ##
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/cathysarisky/netlify-translate-template)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/satonotdead/netlify-translate-template)
 
 
 
